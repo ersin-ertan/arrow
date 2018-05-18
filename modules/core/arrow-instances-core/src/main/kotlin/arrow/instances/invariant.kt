@@ -37,11 +37,7 @@ interface InvariantMonoidInstance<A> : InvariantSemigroupInstance<A>, Monoid<Inv
 // companion object within Invariant
 
 val invariantMonoidInstance: Invariant<ForMonoid> = object : Invariant<ForMonoid> {
-  override fun <A, B> Kind<ForMonoid, A>.imap(f: (A) -> B, fi: (B) -> A): Kind<ForMonoid, B> {
-    val imi: Kind<ForMonoid, B> = object : InvariantMonoidInstance<B> {
-      override fun SG(): Semigroup<B> = TODO("not implemented")
-
-    }.run { imap(f, fi) }
-    return imi
-  }
+  override fun <A, B> Kind<ForMonoid, A>.imap(f: (A) -> B, fi: (B) -> A): Kind<ForMonoid, B> = object : InvariantMonoidInstance<B> {
+    override fun SG(): Semigroup<B> = TODO("not implemented")
+  }.run { imap(f, fi) }
 }
