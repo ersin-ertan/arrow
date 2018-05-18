@@ -1,5 +1,8 @@
 package arrow.typeclasses
 
+import arrow.higherkind
+
+@higherkind
 interface Monoid<A> : Semigroup<A> {
   /**
    * A zero value for this A
